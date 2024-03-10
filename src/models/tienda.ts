@@ -53,4 +53,11 @@ export class Tienda {
     // Limpiar carro
     usuario.carrito.items = [];
   }
+
+  buscar_usuario(id_usuario: number): Usuario {
+    return (
+      this.usuarios.find((usuario) => usuario.id == id_usuario) ||
+      ({} as Usuario)
+    );
+  }
 }

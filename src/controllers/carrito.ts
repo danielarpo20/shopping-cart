@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { ControladorTienda } from "./tienda";
+import { Producto } from "@models/producto";
+import { Item } from "@models/item";
 
 export class ControladorCarrito {
   controladorTienda: ControladorTienda;
@@ -8,27 +10,48 @@ export class ControladorCarrito {
     this.controladorTienda = controladorTienda;
   }
 
-  obtener_carrito() {}
+  obtener_carrito(req: Request, res: Response) {
+    const usuario = this.controladorTienda.tienda.buscar_usuario(
+      Number(req.params.id)
+    );
+    res.status(200).json({ data: usuario.carrito });
+  }
 
   agregar_items = (req: Request, res: Response) => {
-    const id_usuario = req.params.id;
     const { sku, quantity } = req.body.value;
 
-    const usuarios = this.controladorTienda.tienda;
+    const usuario = this.controladorTienda.tienda.buscar_usuario(
+      Number(req.params.id)
+    );
+    const producto =
+      this.controladorTienda.tienda.productos.find(
+        (product) => product.sku == sku
+      ) || ({} as Producto);
 
-    //const usuarioInstance = new Usuario();
-    //const usuario = usuarioInstance.obtener_usuarios(userId);
+    usuario.agregar_item_a_carrito(producto, quantity);
 
-    //    const productoInstance = new conto();
-    //  const producto = productoInstance.obtener_productos(sku);
-
-    //    this.tienda.agregar_producto_a_carrito(usuario, producto, quantity);
-
-    const response = {};
-    return res.status(200).json({ data: response });
+    return res.status(200).json({ data: usuario.carrito });
   };
 
-  remover_items() {}
+  remover_items(req: Request, res: Response) {
+    const { sku } = req.body.value;
 
-  completar_compra() {}
+    const usuario = this.controladorTienda.tienda.buscar_usuario(
+      Number(req.params.id)
+    );
+    const item =
+      usuario.carrito.items.find((item) => item.producto.sku == sku) ||
+      ({} as Item);
+
+    usuario.borrar_item_del_carrito(item);
+    return res.status(200).json({ data: usuario.carrito });
+  }
+
+  completar_compra(req: Request, res: Response) {
+    const usuario = this.controladorTienda.tienda.buscar_usuario(
+      Number(req.params.id)
+    );
+    this.controladorTienda.tienda.finalizar_compra(usuario);
+    res.status(200);
+  }
 }
