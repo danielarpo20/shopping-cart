@@ -2,7 +2,6 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express, { type Request, type Response } from "express";
 import helmet from "helmet";
-import { ControladorProductos } from "./controllers/products";
 import { ControladorTienda } from "./controllers/tienda";
 
 const app: express.Application = express();
@@ -24,17 +23,16 @@ app.use((req: Request, res: Response, next: Function) => {
 });
 
 const controladorTienda = new ControladorTienda();
-//const controladorProductos = new ControladorProductos(controladorTienda);
 
 // Products
 app.get("/api/products/", controladorTienda.controladorProductos.obtener_productos);
 
 // Users
-//app.get("/api/users/", getUsers);
+app.get("/api/users/", controladorTienda.controladorUsuario.obtener_usuarios);
 
 // Shopping cart
-//app.get("/api/shopping_cart/:id", getShoppingCart);
-//app.post("/api/shopping_cart/:id/add", addProduct);
+app.get("/api/shopping_cart/:id", controladorTienda.controladorCarrito.obtener_carrito);
+app.post("/api/shopping_cart/:id/add", controladorTienda.controladorCarrito.agregar_items);
 //app.post("/api/shopping_cart/:id/remove", removeProduct);
 //app.post("/api/shopping_cart/:id/complete_purchase", completePurchase);
 

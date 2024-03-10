@@ -10,7 +10,7 @@ export class Tienda {
   constructor() {
     this.totalVentas = 0;
     this.usuarios = [];
-    this.usuarios.push(new Usuario(this.usuarios.length + 1));
+    this.usuarios.push(new Usuario(this.usuarios.length + 1, "Juan", "juan@gmail.com"));
 
     this.productos = [];
     this.productos.push(
