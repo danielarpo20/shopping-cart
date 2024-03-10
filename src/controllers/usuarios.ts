@@ -8,5 +8,8 @@ export class ControladorUsuarios {
     this.controladorTienda = controladorTienda;
   }
 
-  obtener_usuarios(req: Request, res: Response) {}
+  obtener_usuarios = (req: Request, res: Response) => {
+    const usuarios = this.controladorTienda.tienda.usuarios;
+    res.status(200).json({ data: { usuarios : usuarios } });
+  }
 }
