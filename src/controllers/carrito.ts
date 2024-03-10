@@ -10,12 +10,12 @@ export class ControladorCarrito {
     this.controladorTienda = controladorTienda;
   }
 
-  obtener_carrito(req: Request, res: Response) {
+  obtener_carrito = (req: Request, res: Response) => {
     const usuario = this.controladorTienda.tienda.buscar_usuario(
       Number(req.params.id)
     );
     res.status(200).json({ data: usuario.carrito });
-  }
+  };
 
   agregar_items = (req: Request, res: Response) => {
     const { sku, quantity } = req.body.value;
@@ -33,7 +33,7 @@ export class ControladorCarrito {
     return res.status(200).json({ data: usuario.carrito });
   };
 
-  remover_items(req: Request, res: Response) {
+  remover_items = (req: Request, res: Response) => {
     const { sku } = req.body.value;
 
     const usuario = this.controladorTienda.tienda.buscar_usuario(
@@ -45,13 +45,13 @@ export class ControladorCarrito {
 
     usuario.borrar_item_del_carrito(item);
     return res.status(200).json({ data: usuario.carrito });
-  }
+  };
 
-  completar_compra(req: Request, res: Response) {
+  completar_compra = (req: Request, res: Response) => {
     const usuario = this.controladorTienda.tienda.buscar_usuario(
       Number(req.params.id)
     );
     this.controladorTienda.tienda.finalizar_compra(usuario);
     res.status(200);
-  }
+  };
 }
