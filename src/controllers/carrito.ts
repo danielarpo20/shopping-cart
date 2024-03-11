@@ -43,7 +43,7 @@ export class ControladorCarrito {
       Number(req.params.id)
     );
     const item =
-      usuario.carrito.items.find((item) => item.producto?.sku == sku) || undefined;
+      usuario.carrito.items.find((item) => item?.producto?.sku == sku) || undefined;
 
     if (!item) {
       return res
@@ -59,7 +59,7 @@ export class ControladorCarrito {
     const usuario = this.controladorTienda.tienda.buscar_usuario(
       Number(req.params.id)
     );
-    this.controladorTienda.tienda.finalizar_compra(usuario);
-    res.status(200);
+    const venta = this.controladorTienda.tienda.finalizar_compra(usuario);
+    return res.status(200).json({ data: venta });
   };
 }

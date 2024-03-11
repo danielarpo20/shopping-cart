@@ -41,7 +41,7 @@ export class Tienda {
     usuario.borrar_item_del_carrito(item);
   }
 
-  finalizar_compra(usuario: Usuario) {
+  finalizar_compra(usuario: Usuario) : number {
     // Descontar unidades
     usuario.carrito.items.map((item) => {
       item.producto.descontar_unidades(item.cantidad);
@@ -52,6 +52,7 @@ export class Tienda {
 
     // Limpiar carro
     usuario.carrito.items = [];
+    return this.totalVentas;
   }
 
   buscar_usuario(id_usuario: number): Usuario {
