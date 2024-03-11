@@ -24,15 +24,18 @@ export class ControladorCarrito {
     const usuario = this.controladorTienda.tienda.buscar_usuario(
       Number(req.params.id)
     );
-    const producto = productos.find((product) => product.sku == sku) || undefined;
+    const producto =
+      productos.find((product) => product.sku == sku) || undefined;
 
     if (!producto) {
-      return res
-      .status(400)
-      .json({ message: "Producto no encontrado" });
+      return res.status(400).json({ message: "Producto no encontrado" });
     }
 
-    usuario.agregar_item_a_carrito(producto, quantity);
+    this.controladorTienda.tienda.agregar_producto_a_carrito(
+      usuario,
+      producto,
+      quantity
+    );
     return res.status(200).json({ data: usuario.carrito });
   };
 
@@ -43,15 +46,14 @@ export class ControladorCarrito {
       Number(req.params.id)
     );
     const item =
-      usuario.carrito.items.find((item) => item?.producto?.sku == sku) || undefined;
+      usuario.carrito.items.find((item) => item?.producto?.sku == sku) ||
+      undefined;
 
     if (!item) {
-      return res
-      .status(400)
-      .json({ message: "Producto no encontrado" });
+      return res.status(400).json({ message: "Producto no encontrado" });
     }
-    
-    usuario.borrar_item_del_carrito(item);
+
+    this.controladorTienda.tienda.eliminar_item_del_carrito(usuario, item);
     return res.status(200).json({ data: usuario.carrito });
   };
 
