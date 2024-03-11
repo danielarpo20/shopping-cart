@@ -1,4 +1,5 @@
-class ReglaPrecioPeso implements ReglaPrecio {
+import { ReglaPrecio } from "../regla-precio";
+export class ReglaPrecioPeso implements ReglaPrecio {
   es_aplicable(sku: string): boolean {
     return sku == "WE";
   }

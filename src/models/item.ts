@@ -1,10 +1,12 @@
 import { Producto } from "./producto";
+import { ReglaPrecio } from "./manejador-reglas/regla-precio"
+import { ManejadorReglas } from "./manejador-reglas/manejador-reglas";
 
 export class Item {
   cantidad: number;
   producto: Producto;
-  manejador_reglas: ManejadorReglas;
   regla_precio: ReglaPrecio;
+  manejador_reglas: ManejadorReglas;
 
   constructor(producto: Producto, cantidad: number) {
     this.cantidad = cantidad;

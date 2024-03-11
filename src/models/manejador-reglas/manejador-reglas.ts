@@ -1,4 +1,8 @@
-class ManejadorReglas {
+import { ReglaPrecioNormal } from "./reglas/regla-precio-normal";
+import { ReglaPrecioEspecial } from "./reglas/regla-precio-especial";
+import { ReglaPrecioPeso } from "./reglas/regla-precio-por-peso";
+import { ReglaPrecio } from "./regla-precio";
+export class ManejadorReglas {
   reglas: ReglaPrecio[];
 
   constructor() {

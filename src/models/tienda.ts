@@ -14,14 +14,14 @@ export class Tienda {
 
     this.productos = [];
     this.productos.push(
-      new Producto("EA1", "Tomates", "Tomate de aliño", 5, 500),
-      new Producto("EA1", "Tomates", "Tomate de aliño", 5, 500),
-      new Producto("EA1", "Tomates", "Tomate de aliño", 5, 500),
-      new Producto("EA1", "Tomates", "Tomate de aliño", 5, 500),
-      new Producto("EA1", "Tomates", "Tomate de aliño", 5, 500),
-      new Producto("EA1", "Tomates", "Tomate de aliño", 5, 500),
-      new Producto("EA1", "Tomates", "Tomate de aliño", 5, 500),
-      new Producto("EA1", "Tomates", "Tomate de aliño", 5, 500)
+      new Producto("WE1", "Tomates", "Tomate de aliño", 5, 500),
+      new Producto("WE2", "Cebollas", "Cebolla Rama", 5, 500),
+      new Producto("WE3", "lechuga", "Lechuga Fresca", 5, 500),
+      new Producto("EA1", "Pescado", "Pescado Fresco", 5, 500),
+      new Producto("EA2", "Pollo", "Pechuga de Pollo", 5, 500),
+      new Producto("SP1", "Arroz", "Arroz Diana", 5, 500),
+      new Producto("SP2", "Crema dental", "Colgate", 5, 500),
+      new Producto("SP3", "Cepillo de dientes", "Pro", 5, 500)
     );
   }
 
