@@ -34,8 +34,8 @@ class ControladorCarrito {
         };
         this.completar_compra = (req, res) => {
             const usuario = this.controladorTienda.tienda.buscar_usuario(Number(req.params.id));
-            const venta = this.controladorTienda.tienda.finalizar_compra(usuario);
-            return res.status(200).json({ data: venta });
+            const items = this.controladorTienda.tienda.finalizar_compra(usuario);
+            return res.status(200).json({ data: items });
         };
         this.controladorTienda = controladorTienda;
     }
