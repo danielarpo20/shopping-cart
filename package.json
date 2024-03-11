@@ -13,7 +13,7 @@
   "repository": {
     "type": "git"
   },
-  "author": "Brayan Duque and Daniela Restrepo",
+  "author": "Brayan Duque and Daniela Restrepo Mesa",
   "license": "ISC",
   "devDependencies": {
     "@baemingo/tscpaths-async": "^0.0.15",
