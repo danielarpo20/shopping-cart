@@ -18,31 +18,39 @@ export class ControladorCarrito {
   };
 
   agregar_items = (req: Request, res: Response) => {
-    const { sku, quantity } = req.body.value;
+    const { sku, quantity } = req.body;
+    const productos = this.controladorTienda.tienda.productos;
 
     const usuario = this.controladorTienda.tienda.buscar_usuario(
       Number(req.params.id)
     );
-    const producto =
-      this.controladorTienda.tienda.productos.find(
-        (product) => product.sku == sku
-      ) || ({} as Producto);
+    const producto = productos.find((product) => product.sku == sku) || undefined;
+
+    if (!producto) {
+      return res
+      .status(400)
+      .json({ message: "Producto no encontrado" });
+    }
 
     usuario.agregar_item_a_carrito(producto, quantity);
-
     return res.status(200).json({ data: usuario.carrito });
   };
 
   remover_items = (req: Request, res: Response) => {
-    const { sku } = req.body.value;
+    const { sku } = req.body;
 
     const usuario = this.controladorTienda.tienda.buscar_usuario(
       Number(req.params.id)
     );
     const item =
-      usuario.carrito.items.find((item) => item.producto.sku == sku) ||
-      ({} as Item);
+      usuario.carrito.items.find((item) => item.producto?.sku == sku) || undefined;
 
+    if (!item) {
+      return res
+      .status(400)
+      .json({ message: "Producto no encontrado" });
+    }
+    
     usuario.borrar_item_del_carrito(item);
     return res.status(200).json({ data: usuario.carrito });
   };
