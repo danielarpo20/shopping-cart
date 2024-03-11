@@ -11,15 +11,10 @@
     "post:compile": "tscpaths -p tsconfig.json -s ./src -o ./dist --silent"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/raiandexter0607/shopping_card_backend.git"
+    "type": "git"
   },
   "author": "Brayan Duque and Daniela Restrepo",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/raiandexter0607/shopping_card_backend/issues"
-  },
-  "homepage": "https://github.com/raiandexter0607/shopping_card_backend#readme",
   "devDependencies": {
     "@baemingo/tscpaths-async": "^0.0.15",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
