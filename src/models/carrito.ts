@@ -11,7 +11,13 @@ export class Carrito {
   }
 
   agregar_item(producto: Producto, cantidad: number) {
-    this.items.push(new Item(producto, cantidad));
+    const item = this.items.find(item => item.producto.sku === producto.sku);
+    if(item) {
+      item.cantidad += cantidad;
+    }
+    else{
+      this.items.push(new Item(producto, cantidad));
+    }
     this.total = this.calcular_total();
   }
 
