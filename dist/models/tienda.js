@@ -42,5 +42,10 @@ class Tienda {
         return (this.usuarios.find((usuario) => usuario.id == id_usuario) ||
             {});
     }
+    limpiar_carrito(usuario) {
+        usuario.carrito.items = [];
+        usuario.carrito.total = 0;
+        return usuario.carrito;
+    }
 }
 exports.Tienda = Tienda;

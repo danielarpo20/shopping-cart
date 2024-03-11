@@ -25,6 +25,7 @@ app.get("/api/shopping_cart/:id", controladorTienda.controladorCarrito.obtener_c
 app.post("/api/shopping_cart/:id/add", controladorTienda.controladorCarrito.agregar_items);
 app.delete("/api/shopping_cart/:id/remove", controladorTienda.controladorCarrito.remover_items);
 app.post("/api/shopping_cart/:id/complete_purchase", controladorTienda.controladorCarrito.completar_compra);
+app.post("/api/shopping_cart/:id/clear", controladorTienda.controladorCarrito.limpiar_carrito);
 app.get("/health-check", (req, res) => res.sendStatus(200));
 app.use("*", (req, res) => {
     res.sendStatus(404);
