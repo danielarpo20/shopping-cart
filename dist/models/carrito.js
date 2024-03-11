@@ -8,7 +8,13 @@ class Carrito {
         this.total = 0;
     }
     agregar_item(producto, cantidad) {
-        this.items.push(new item_1.Item(producto, cantidad));
+        const item = this.items.find(item => item.producto.sku === producto.sku);
+        if (item) {
+            item.cantidad += cantidad;
+        }
+        else {
+            this.items.push(new item_1.Item(producto, cantidad));
+        }
         this.total = this.calcular_total();
     }
     borrar_item(item) {
