@@ -76,4 +76,10 @@ export class Tienda {
       ({} as Usuario)
     );
   }
+
+  limpiar_carrito(usuario: Usuario) {
+    usuario.carrito.items = [];
+    usuario.carrito.total = 0;
+    return usuario.carrito;
+  }
 }

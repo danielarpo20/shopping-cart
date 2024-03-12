@@ -64,4 +64,18 @@ export class ControladorCarrito {
     const items = this.controladorTienda.tienda.finalizar_compra(usuario);
     return res.status(200).json({ data: items });
   };
+
+  limpiar_carrito = (req: Request, res: Response) => {
+    const usuario = this.controladorTienda.tienda.buscar_usuario(
+      Number(req.params.id)
+    );
+
+    const items = usuario.carrito.items;
+    if (items.length === 0) {
+      return res.status(400).json({ message: "Carrito vacío" });
+    }
+
+    this.controladorTienda.tienda.limpiar_carrito(usuario);
+    return res.status(200).json({ data: usuario.carrito });
+  }
 }
