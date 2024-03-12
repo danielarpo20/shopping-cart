@@ -13,9 +13,10 @@ export class ManejadorReglas {
   }
 
   obtener_regla(sku: string): ReglaPrecio {
-    if (sku.slice(0, 2) == "EA") return this.reglas[0];
-    if (sku.slice(0, 2) == "SP") return this.reglas[1];
-    if (sku.slice(0, 2) == "WE") return this.reglas[2];
+    for (const regla of this.reglas) {
+      if (regla.es_aplicable(sku.slice(0,2))) return regla;
+    }
+
     return this.reglas[0];
   }
 }
